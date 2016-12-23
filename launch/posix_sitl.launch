@@ -6,7 +6,7 @@
     <arg name="z" default="0"/>
     <arg name="R" default="0"/>
     <arg name="P" default="0"/>
-    <arg name="Y" default="0"/>
+    <arg name="Y" default="0"/> 
 
     <arg name="est" default="lpe"/>
     <arg name="vehicle" default="iris"/>
@@ -22,6 +22,7 @@
     <arg name="verbose" default="false"/>
     <arg name="paused" default="false"/>
 
+
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="headless" value="$(arg headless)"/>
         <arg name="gui" value="$(arg gui)"/>
@@ -31,7 +32,19 @@
         <arg name="paused" value="$(arg paused)" />
     </include>
 
-    <group ns="uav_3">
+
+
+
+    <node name="sitl" pkg="px4" type="px4" output="screen" 
+        args="$(find px4) $(arg rcS)">
+    </node>
+
+    <node name="$(anon vehicle_spawn)" output="screen" pkg="gazebo_ros" type="spawn_model" 
+        args="-sdf -file $(arg sdf) -model $(arg vehicle) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
+
+
+<!--
+<group ns="uav_3">
     <node name="sitl" pkg="px4" type="px4" output="screen" args="$(find px4) $(arg rcS)">
     </node>   
 
@@ -45,7 +58,10 @@
 
     <node name="$(anon vehicle_spawn)" output="screen" pkg="gazebo_ros" type="spawn_model"
         args="-sdf -file $(arg sdf) -model iris2 -x 5 -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
-    </group>
+</group>
+--> 
+
+
 </launch>
 
 <!-- vim: set et ft=xml fenc=utf-8 ff=unix sts=0 sw=4 ts=4 : -->

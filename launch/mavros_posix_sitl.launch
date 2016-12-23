@@ -1,31 +1,33 @@
 <launch>
 
     <!-- MAVROS posix SITL environment launch script -->
-    <arg name="x" default="0"/>
-    <arg name="y" default="0"/>
-    <arg name="z" default="0"/>
+    <arg name="x" default="64.929685"/>
+    <arg name="y" default="-24.837466"/>
+    <arg name="z" default="0.066982"/>
     <arg name="R" default="0"/>
-    <arg name="P" default="0"/>
-    <arg name="Y" default="0"/>
+    <arg name="P" default="-0.008468"/>
+    <arg name="Y" default="2.407783"/>
 
 
     <arg name="est" default="lpe"/>
     <arg name="vehicle" default="iris"/>
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
-    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
-
+    <arg name="world" default="$(find kuri_mbzirc_sim)/gazebo_models/world/mbzirc_arena.world"/>
+    <arg name="sdf" default="$(find kuri_mbzirc_sim)/urdf/$(arg vehicle)/iris_with_sensors.sdf"/>
     <arg name="rcS" default="$(find px4)/posix-configs/SITL/init/$(arg est)/$(arg vehicle)"/>
 
     <arg name="headless" default="false"/>
     <arg name="gui" default="true"/>
-    <arg name="ns" default="/"/>
+    <arg name="ns" default="/"/>      
     <arg name="fcu_url" default="udp://:14540@localhost:14557"/>
 
     <arg name="debug" default="false"/>
     <arg name="verbose" default="false"/>
     <arg name="paused" default="false"/>
 
-    <include file="$(find kuri_mbzirc_sim)/launch/posix_sitl.launch">
+    <arg name="pluginlists_yaml" default="$(find mavros)/launch/px4_pluginlists.yaml" />
+    <arg name="config_yaml" default="$(find mavros)/launch/px4_config.yaml" />
+
+    <include file="$(find px4)/launch/posix_sitl.launch">
         <arg name="x" value="$(arg x)"/>
         <arg name="y" value="$(arg y)"/>
         <arg name="z" value="$(arg z)"/>
@@ -43,22 +45,32 @@
         <arg name="verbose" value="$(arg verbose)"/>
         <arg name="paused" value="$(arg paused)"/>
     </include>
-    
 
-    <include file="$(find kuri_mbzirc_sim)/launch/mavros.launch">
-        <arg name="ns" value="uav_3"/>
-        <arg name="gcs_url" value=""/> <!-- GCS link is provided by SITL -->
-        <arg name="fcu_url" default="udp://localhost:14570@localhost:14575" />        
-    </include>
-
-
-    <include file="$(find kuri_mbzirc_sim)/launch/mavros.launch">
-        <arg name="ns" value="uav_2"/>
+    <include file="$(find px4)/launch/mavros.launch">
+        <arg name="ns" value="$(arg ns)"/>
         <arg name="gcs_url" value=""/> <!-- GCS link is provided by SITL -->
         <arg name="fcu_url" value="$(arg fcu_url)"/>
+        <arg name="pluginlists_yaml" value="$(arg pluginlists_yaml)" />
+        <arg name="config_yaml" value="$(arg config_yaml)" />
     </include>
 
-    
+
+    <param name="robot_description" textfile="$(find kuri_mbzirc_sim)/urdf/$(arg vehicle)/iris_with_sensors.urdf"
+     />
+
+      <!-- send the robot XML to param server -->
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+
+      <!-- Given the published joint states, publish tf for the robot links -->
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+   <node pkg="tf" type="static_transform_publisher" name="map_to_world" args="0 0 0 0 0 0 /map /world 500"/> 
+   <node pkg="tf" type="static_transform_publisher" name="world_to_base_link" args="0 0 0 0 0 0 /world /base_link 500"/> 
+ 
+
+
+
 </launch>
 
 <!-- vim: set et ft=xml fenc=utf-8 ff=unix sts=0 sw=4 ts=4 : -->
