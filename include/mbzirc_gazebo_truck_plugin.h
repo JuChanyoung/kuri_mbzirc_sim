@@ -54,8 +54,8 @@ public:
   virtual ~GazeboTruck();
 
   // http://www.mbzirc.com/assets/files/MBZIRC-Challenge-Description-Document-V2-7SEP2015.pdf
-  const float CIRCLE_RADIUS = 20.0;
-  const float CIRCLE_DISTANCE = 55.0;
+  const float CIRCLE_RADIUS = 16.0;
+  const float CIRCLE_DISTANCE = 46;
 
 protected:
   virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);

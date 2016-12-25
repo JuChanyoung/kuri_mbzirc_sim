@@ -7,7 +7,7 @@
       <collision name="collision">
         <geometry>
           <box>
-            <size>79 158 .1</size>
+            <size>72.63 108.945 .1</size>
           </box>
         </geometry>
       </collision>
@@ -16,7 +16,7 @@
         <cast_shadows>false</cast_shadows>
         <geometry>
           <box>
-            <size>79 158 .1</size>
+            <size>72.63 108.945 .1</size>
           </box>
         </geometry>
         <material>
@@ -35,7 +35,7 @@
       <collision name="collision">
         <geometry>
           <box>
-            <size>79 158 .1</size>
+            <size>72.63 108.945 .1</size>
           </box>
         </geometry>
       </collision>
@@ -43,7 +43,7 @@
         <cast_shadows>false</cast_shadows>
         <geometry>
           <box>
-            <size>79 158 .1</size>
+            <size>72.63 108.945 .1</size>
           </box>
         </geometry>
         <material>
