@@ -23,4 +23,4 @@
   <node name="spawn_wrench18" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/wrench18/model.sdf -sdf -model wrench18 -x 5.165 -y 5.40 -z 1.20" />
   <node name="spawn_wrench19" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/wrench19/model.sdf -sdf -model wrench19 -x 5.165 -y 5.45 -z 1.20" />
 
-  </launch>
+</launch>
