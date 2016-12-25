@@ -29,7 +29,7 @@
 
 #include <mbzirc_gazebo_panel_position_plugin.h>
 #include <string>
-#include <unistd.h>
+#include <algorithm>    // std::random_shuffle
 
 double randomDouble(double min, double max)
 {
@@ -119,14 +119,19 @@ void GazeboPanelPosition::Update()
 
   msgs::Factory msg;
 
+  // Randomize wrenches
+  static const double arr[] = {0.20,0.25,0.30,0.35,0.40,0.45};
+  std::vector<double> vec (arr, arr + sizeof(arr) / sizeof(arr[0]) );
+  std::random_shuffle ( vec.begin(), vec.end() );
+
   // Insert wrenches
   InsertValveStem("model://stem", x, y, 0.0225, -0.155, yaw);
-  InsertWrench("model://wrench12", x, y, 0.165, 0.2, yaw);
-  InsertWrench("model://wrench13", x, y, 0.165, 0.25, yaw);
-  InsertWrench("model://wrench14", x, y, 0.165, 0.30, yaw);
-  InsertWrench("model://wrench15", x, y, 0.165, 0.35, yaw);
-  InsertWrench("model://wrench18", x, y, 0.165, 0.40, yaw);
-  InsertWrench("model://wrench19", x, y, 0.165, 0.45, yaw);
+  InsertWrench("model://wrench12", x, y, 0.165, vec[0], yaw);
+  InsertWrench("model://wrench13", x, y, 0.165, vec[1], yaw);
+  InsertWrench("model://wrench14", x, y, 0.165, vec[2], yaw);
+  InsertWrench("model://wrench15", x, y, 0.165, vec[3], yaw);
+  InsertWrench("model://wrench18", x, y, 0.165, vec[4], yaw);
+  InsertWrench("model://wrench19", x, y, 0.165, vec[5], yaw);
 
   terminated_ = true;
 }
