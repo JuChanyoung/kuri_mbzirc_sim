@@ -29,8 +29,8 @@
           </box>
         </geometry>
         <material>
-          <ambient>0.24 0.70 0.44 1</ambient> <!-- MediamSeaGreen -->
-          <diffuse>0.24 0.70 0.44 1</diffuse>
+          <ambient>1 0.549 0 1</ambient> <!-- dark Orange -->
+          <diffuse>1 0.549 0 1</diffuse>
           <specular>0.1 0.1 0.1 1</specular>
           <emissive>0 0 0 0</emissive>
         </material>
@@ -38,3 +38,5 @@
     </link>
   </model> 
 </sdf>
+
+255-140-0
