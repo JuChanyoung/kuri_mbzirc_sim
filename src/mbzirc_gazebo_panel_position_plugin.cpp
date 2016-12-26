@@ -152,16 +152,15 @@ void GazeboPanelPosition::InsertWrench(std::string model_name, double x, double 
   double x_inc = x_offset*cos(yaw) - y_offset*sin(yaw);
   double y_inc = x_offset*sin(yaw) + y_offset*cos(yaw);
 
-  /*
-   * Gazebo2 version
-   */
-  // msgs::Set(msg.mutable_pose(), math::Pose(x + x_inc, y + y_inc, WRENCH_Z, 0, 0, yaw));
-
-  // Gazebo 6+ support
+  // Set position in Gazebo
+#if GAZEBO_MAJOR_VERSION >= 6
   msgs::Set(msg.mutable_pose(), ignition::math::Pose3d(
               ignition::math::Vector3d(x + x_inc, y + y_inc, WRENCH_Z),
               ignition::math::Quaterniond(0, 0, yaw)));
-
+#else
+  // Gazebo2 support
+  msgs::Set(msg.mutable_pose(), math::Pose(x + x_inc, y + y_inc, WRENCH_Z, 0, 0, yaw));
+#endif
 
   // Publish
   factoryPub->Publish(msg);
@@ -181,18 +180,15 @@ void GazeboPanelPosition::InsertValveStem(std::string model_name, double x, doub
   double x_inc = x_offset*cos(yaw) - y_offset*sin(yaw);
   double y_inc = x_offset*sin(yaw) + y_offset*cos(yaw);
 
-
-  /*
-   * Gazebo2 version
-   */
-  // msgs::Set(msg.mutable_pose(), math::Pose(x + x_inc, y + y_inc, VALVE_STEM_Z, 0, -M_PI_2, yaw));
-
-  // Gazebo 6+ support
+  // Set position in Gazebo
+#if GAZEBO_MAJOR_VERSION >= 6
   msgs::Set(msg.mutable_pose(), ignition::math::Pose3d(
               ignition::math::Vector3d(x + x_inc, y + y_inc, VALVE_STEM_Z),
               ignition::math::Quaterniond(0, -M_PI_2, yaw)));
-
-
+#else
+  // Gazebo2 support
+  msgs::Set(msg.mutable_pose(), math::Pose(x + x_inc, y + y_inc, VALVE_STEM_Z, 0, -M_PI_2, yaw));
+#endif
 
   // Publish
   factoryPub->Publish(msg);

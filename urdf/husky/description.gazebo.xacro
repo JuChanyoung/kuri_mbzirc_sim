@@ -30,7 +30,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="ur5_enabled" default="false" />
   <xacro:arg name="gripper_enabled" default="false" />
 
-  <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/husky.urdf.xacro" />
+  <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/husky/husky.urdf.xacro" />
   <xacro:include filename="$(find husky_gazebo)/urdf/husky.gazebo.xacro" />
 
   <!-- Gazebo plugin for ROS Control -->

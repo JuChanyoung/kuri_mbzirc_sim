@@ -154,7 +154,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <sick_lms1xx_mount prefix="base" topic="scan"/>
 
       <joint name="laser_mount_joint" type="fixed">
-        <origin xyz="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)"
+        <origin xyz="$(optenv HUSKY_LMS1XX_XYZ 0.4 0.0 -0.20635)"
                 rpy="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
         <parent link="top_plate_link" />
         <child link="base_laser_mount" />
