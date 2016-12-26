@@ -30,6 +30,7 @@
 #include <mbzirc_gazebo_panel_position_plugin.h>
 #include <string>
 #include <algorithm>    // std::random_shuffle
+#include <ignition/math/Pose3.hh>
 
 double randomDouble(double min, double max)
 {
@@ -151,8 +152,16 @@ void GazeboPanelPosition::InsertWrench(std::string model_name, double x, double 
   double x_inc = x_offset*cos(yaw) - y_offset*sin(yaw);
   double y_inc = x_offset*sin(yaw) + y_offset*cos(yaw);
 
+  /*
+   * Gazebo2 version
+   */
+  // msgs::Set(msg.mutable_pose(), math::Pose(x + x_inc, y + y_inc, WRENCH_Z, 0, 0, yaw));
 
-  msgs::Set(msg.mutable_pose(), math::Pose(x + x_inc, y + y_inc, WRENCH_Z, 0, 0, yaw));
+  // Gazebo 6+ support
+  msgs::Set(msg.mutable_pose(), ignition::math::Pose3d(
+              ignition::math::Vector3d(x + x_inc, y + y_inc, WRENCH_Z),
+              ignition::math::Quaterniond(0, 0, yaw)));
+
 
   // Publish
   factoryPub->Publish(msg);
@@ -172,7 +181,18 @@ void GazeboPanelPosition::InsertValveStem(std::string model_name, double x, doub
   double x_inc = x_offset*cos(yaw) - y_offset*sin(yaw);
   double y_inc = x_offset*sin(yaw) + y_offset*cos(yaw);
 
-  msgs::Set(msg.mutable_pose(), math::Pose(x + x_inc, y + y_inc, VALVE_STEM_Z, 0, -M_PI_2, yaw));
+
+  /*
+   * Gazebo2 version
+   */
+  // msgs::Set(msg.mutable_pose(), math::Pose(x + x_inc, y + y_inc, VALVE_STEM_Z, 0, -M_PI_2, yaw));
+
+  // Gazebo 6+ support
+  msgs::Set(msg.mutable_pose(), ignition::math::Pose3d(
+              ignition::math::Vector3d(x + x_inc, y + y_inc, VALVE_STEM_Z),
+              ignition::math::Quaterniond(0, -M_PI_2, yaw)));
+
+
 
   // Publish
   factoryPub->Publish(msg);
@@ -183,7 +203,7 @@ void GazeboPanelPosition::InsertValveStem(std::string model_name, double x, doub
 // Reset the controller
 void GazeboPanelPosition::Reset()
 {
-  terminated_ = true;
+  terminated_ = false;
 }
 
 // Register this plugin with the simulator

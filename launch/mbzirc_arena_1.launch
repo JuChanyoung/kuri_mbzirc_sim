@@ -18,6 +18,7 @@
     <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
           args=" -urdf -model truck -param /truck/robot_description" />
 
+    <!--
     <node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen" >
       <remap from="base_pose_ground_truth" to="/truck/ground_truth/odom"/>
       <param name="global_frame_id " value="/world"/>
@@ -29,6 +30,7 @@
       <param name="tf_prefix" type="string" value="truck/ground_truth" />
       <param name="publish_frequency" type="double" value="50.0" />
     </node>
+    -->
   </group>
 
 </launch>

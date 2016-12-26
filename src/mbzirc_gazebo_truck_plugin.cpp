@@ -164,6 +164,10 @@ void GazeboTruck::Update()
   model_->SetLinkWorldPose(math::Pose(x, y, 0, 0, 0, yaw), link_);
   last_time_ = world_->GetSimTime();
 
+  /*
+   * @TODO: Update this for gazebo7 to allow for automated testing
+   *
+
   // check score
   // void Entity::GetNearestEntityBelow(double &_distBelow,  std::string &_entityName)
 
@@ -199,6 +203,7 @@ void GazeboTruck::Update()
       pub_score_.publish(msg_score);
       terminated_ = true;
     }
+  */
 }
 
 ////////////////////////////////////////////////////////////////////////////////
