@@ -44,7 +44,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       </plugin>
     </gazebo>
 
-    <!--
     <gazebo>
       <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
         <updateRate>40</updateRate>
@@ -53,17 +52,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <frameId>base_link</frameId>
         <topicName>navsat/fix</topicName>
         <velocityTopicName>navsat/vel</velocityTopicName>
-        <referenceLatitude>49.9</referenceLatitude>
-        <referenceLongitude>8.9</referenceLongitude>
+        <referenceLatitude>24.4793194</referenceLatitude>
+        <referenceLongitude>54.6105446</referenceLongitude>
         <referenceHeading>0</referenceHeading>
         <referenceAltitude>0</referenceAltitude>
         <drift>0.0001 0.0001 0.0001</drift>
       </plugin>
     </gazebo>
-    -->
 
 
-  
     <xacro:if value="$(arg ur5_enabled)">
       <!--Remove when https://github.com/ros-industrial/universal_robot/pull/168 is resolved -->
       <gazebo reference="ur5_arm_shoulder_link">
