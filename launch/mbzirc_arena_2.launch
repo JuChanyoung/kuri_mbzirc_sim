@@ -1,7 +1,7 @@
 <launch>
   <arg name="random_panel" default="true"/>
 
-  <arg name="paused" default="true"/>
+  <arg name="paused" default="false"/>
   <arg name="debug" default="false"/>
   <arg name="gui" default="true"  />
   <arg name="headless" default="false"/>

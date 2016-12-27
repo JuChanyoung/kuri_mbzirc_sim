@@ -1,20 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <model name="panel">
-
-    <!-- Marker -->
-    <static>true</static>
-    <link name="link">
-      <pose>0.155 0.2 0.6  0 0 0</pose>
-      <visual name="visual">
-        <geometry>
-          <mesh>
-            <uri>model://aruco0/meshes/Aruco0.dae</uri>
-          <scale>0.8 0.8 0.8</scale></mesh>
-        </geometry>
-      </visual>
-    </link>
-
     <!-- Panel -->
     <static>true</static>
     <link name="link_panel">
@@ -90,5 +76,18 @@
     </link>
     <static>0</static>
     <allow_auto_disable>1</allow_auto_disable>
+
+    <!-- Marker -->
+    <static>true</static>
+    <link name="link">
+      <pose>0.155 0.2 0.6  0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://aruco0/meshes/Aruco0.dae</uri>
+          <scale>0.8 0.8 0.8</scale></mesh>
+        </geometry>
+      </visual>
+    </link>
   </model>
 </sdf>
