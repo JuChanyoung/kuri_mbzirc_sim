@@ -4,7 +4,7 @@ project(kuri_mbzirc_sim)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS gazebo_ros std_msgs geometry_msgs)
+find_package(catkin REQUIRED COMPONENTS gazebo_ros std_msgs geometry_msgs hector_gazebo_plugins)
 
 find_package(gazebo REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread random)

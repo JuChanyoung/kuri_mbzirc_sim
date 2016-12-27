@@ -1,4 +1,4 @@
-<sdf version='1.5'>
+<sdf version='1.6'>
   <model name='iris'>
     <link name='base_link'>
       <pose frame=''>0 0 0 0 -0 0</pose>
@@ -33,7 +33,7 @@
           </friction>
         </surface>
       </collision>
-      <collision name='base_link_lump::downward_cam_link_collision_1'>
+      <collision name='base_link_fixed_joint_lump__downward_cam_link_collision_1'>
         <pose frame=''>0 0 -0.045 3.14159 1.57079 3.14159</pose>
         <geometry>
           <box>
@@ -49,7 +49,7 @@
           </friction>
         </surface>
       </collision>
-      <collision name='base_link_lump::front_cam_link_collision_2'>
+      <collision name='base_link_fixed_joint_lump__front_cam_link_collision_2'>
         <pose frame=''>0.15 0 -0.048 0 0.093 0</pose>
         <geometry>
           <box>
@@ -80,7 +80,7 @@
           </script>
         </material>
       </visual>
-      <visual name='base_link_lump::downward_cam_link_visual_1'>
+      <visual name='base_link_fixed_joint_lump__downward_cam_link_visual_1'>
         <pose frame=''>0 0 -0.045 3.14159 1.57079 3.14159</pose>
         <geometry>
           <box>
@@ -94,7 +94,7 @@
           </script>
         </material>
       </visual>
-      <visual name='base_link_lump::front_cam_link_visual_2'>
+      <visual name='base_link_fixed_joint_lump__front_cam_link_visual_2'>
         <pose frame=''>0.15 0 -0.048 0 0.093 0</pose>
         <geometry>
           <box>
@@ -137,7 +137,6 @@
       <velocity_decay/>
       <gravity>1</gravity>
       <velocity_decay/>
-      <self_collide>0</self_collide>
       <sensor name='front_cam' type='depth'>
         <update_rate>20</update_rate>
         <camera name='__default__'>
@@ -244,7 +243,6 @@
       </visual>
       <gravity>1</gravity>
       <velocity_decay/>
-      <self_collide>0</self_collide>
     </link>
     <joint name='rotor_0_joint' type='revolute'>
       <child>rotor_0</child>
@@ -310,7 +308,6 @@
       </visual>
       <gravity>1</gravity>
       <velocity_decay/>
-      <self_collide>0</self_collide>
     </link>
     <joint name='rotor_1_joint' type='revolute'>
       <child>rotor_1</child>
@@ -376,7 +373,6 @@
       </visual>
       <gravity>1</gravity>
       <velocity_decay/>
-      <self_collide>0</self_collide>
     </link>
     <joint name='rotor_2_joint' type='revolute'>
       <child>rotor_2</child>
@@ -442,7 +438,6 @@
       </visual>
       <gravity>1</gravity>
       <velocity_decay/>
-      <self_collide>0</self_collide>
     </link>
     <joint name='rotor_3_joint' type='revolute'>
       <child>rotor_3</child>
