@@ -31,9 +31,22 @@
     </include>
 
     <include>
-<!--      <pose>0 0 0 1.5708 -0 0</pose> -->
       <uri>model://arena</uri>
     </include>
+
+    <light name='point_light_0' type='point'>
+      <pose frame=''>0 24.5 3 0 0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.1</constant>
+        <linear>0.1</linear>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
 
     <gui fullscreen='0'>
       <camera name='user_camera'>
