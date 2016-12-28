@@ -2,6 +2,7 @@
 
 <robot name="truck" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:property name="pi" value="3.1415926535897931" />
+  <xacro:arg name="enable_motion" default="true" />
 
   <!-- body -->
   <link name="base_link">
@@ -198,9 +199,11 @@
       <updateRate>50.0</updateRate>
     </plugin>
     <!-- truck trajectory + task1 rule -->
-    <plugin name="mbzirc_gazebo_truck_plugin" filename="libmbzirc_gazebo_truck_plugin.so"> 
-      <bodyName>base_link</bodyName>
+    <xacro:if value="$(arg enable_motion)">
+      <plugin name="mbzirc_gazebo_truck_plugin" filename="libmbzirc_gazebo_truck_plugin.so">
+        <bodyName>base_link</bodyName>
       </plugin>
+    </xacro:if>
   </gazebo>
 
   <!-- physical property of each link in gazebo -->
@@ -209,7 +212,7 @@
     <mu2>50</mu2>
     <kp>1e+13</kp>
     <kd>1</kd>
-    <gravity>0</gravity>
+    <gravity>1</gravity>
   </gazebo>
 
   <gazebo reference="heliport">
@@ -217,7 +220,7 @@
     <mu2>50</mu2>
     <kp>1e+13</kp>
     <kd>1</kd>
-    <gravity>0</gravity>
+    <gravity>1</gravity>
   </gazebo>
 
   <gazebo reference="front_left_tire">
@@ -226,7 +229,7 @@
     <kp>1e+13</kp>
     <kd>1</kd>
     <material>Gazebo/Black</material>
-    <gravity>0</gravity>
+    <gravity>1</gravity>
   </gazebo>
 
   <gazebo reference="front_right_tire">
@@ -235,7 +238,7 @@
     <kp>1e+13</kp>
     <kd>1</kd>
     <material>Gazebo/Black</material>
-    <gravity>0</gravity>
+    <gravity>1</gravity>
   </gazebo>
 
   <gazebo reference="rear_left_tire">
@@ -244,7 +247,7 @@
     <kp>1e+13</kp>
     <kd>1</kd>
     <material>Gazebo/Black</material>
-    <gravity>0</gravity>
+    <gravity>1</gravity>
   </gazebo>
 
   <gazebo reference="rear_right_tire">
@@ -253,7 +256,7 @@
     <kp>1e+13</kp>
     <kd>1</kd>
     <material>Gazebo/Black</material>
-    <gravity>0</gravity>
+    <gravity>1</gravity>
   </gazebo>
 
 </robot>
