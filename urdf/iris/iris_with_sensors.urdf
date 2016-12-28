@@ -513,6 +513,102 @@
       <!-- Accelerometer turn on bias standard deviation [m/s^2] -->
     </plugin>
   </gazebo>
+  <!-- Mount an IMU providing ground truth. -->
+  <!-- IMU link -->
+  <link name="/imugt_link">
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001"/>
+      <mass value="1e-05"/>
+      <!-- [kg] -->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </inertial>
+  </link>
+  <!-- IMU joint -->
+  <joint name="/imugt_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="/imugt_link"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+  <gazebo>
+    <plugin filename="librotors_gazebo_imu_plugin.so" name="rotors_gazebo_imugt_plugin">
+      <!-- A good description of the IMU parameters can be found in the kalibr documentation:
+           https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model-and-Intrinsics -->
+      <robotNamespace></robotNamespace>
+      <!-- (string, required): ros namespace in which the messages are published -->
+      <linkName>/imugt_link</linkName>
+      <!-- (string, required): name of the body which holds the IMU sensor -->
+      <imuTopic>ground_truth/imu</imuTopic>
+      <!-- (string): name of the sensor output topic and prefix of service names (defaults to imu) -->
+      <gyroscopeNoiseDensity>0.0</gyroscopeNoiseDensity>
+      <!-- Gyroscope noise density (two-sided spectrum) [rad/s/sqrt(Hz)] -->
+      <gyroscopeRandomWalk>0.0</gyroscopeRandomWalk>
+      <!-- Gyroscope bias random walk [rad/s/s/sqrt(Hz)] -->
+      <gyroscopeBiasCorrelationTime>1000.0</gyroscopeBiasCorrelationTime>
+      <!-- Gyroscope bias correlation time constant [s] -->
+      <gyroscopeTurnOnBiasSigma>0.0</gyroscopeTurnOnBiasSigma>
+      <!-- Gyroscope turn on bias standard deviation [rad/s] -->
+      <accelerometerNoiseDensity>0.0</accelerometerNoiseDensity>
+      <!-- Accelerometer noise density (two-sided spectrum) [m/s^2/sqrt(Hz)] -->
+      <accelerometerRandomWalk>0.0</accelerometerRandomWalk>
+      <!-- Accelerometer bias random walk. [m/s^2/s/sqrt(Hz)] -->
+      <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime>
+      <!-- Accelerometer bias correlation time constant [s] -->
+      <accelerometerTurnOnBiasSigma>0.0</accelerometerTurnOnBiasSigma>
+      <!-- Accelerometer turn on bias standard deviation [m/s^2] -->
+    </plugin>
+  </gazebo>
+  <!-- Mount a generic odometry sensor providing ground truth. -->
+  <!-- odometry link -->
+  <link name="/ground_truth/odometry_sensorgt_link">
+    <inertial>
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001"/>
+      <mass value="1e-05"/>
+      <!-- [kg] -->
+    </inertial>
+  </link>
+  <!-- odometry joint -->
+  <joint name="/ground_truth/odometry_sensorgt_joint" type="revolute">
+    <parent link="base_link"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    <child link="/ground_truth/odometry_sensorgt_link"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+  <gazebo>
+    <plugin filename="librotors_gazebo_odometry_plugin.so" name="odometry_sensorgt">
+      <linkName>/ground_truth/odometry_sensorgt_link</linkName>
+      <robotNamespace>/ground_truth</robotNamespace>
+      <poseTopic>pose</poseTopic>
+      <poseWithCovarianceTopic>pose_with_covariance</poseWithCovarianceTopic>
+      <positionTopic>position</positionTopic>
+      <transformTopic>transform</transformTopic>
+      <odometryTopic>odometry</odometryTopic>
+      <parentFrameId>world</parentFrameId>
+      <!-- Use the scoped link name here. e.g. Model::link. -->
+      <measurementDivisor>1</measurementDivisor>
+      <!-- only every (seq % measurementDivisor) == 0 measurement is published [int] -->
+      <measurementDelay>0</measurementDelay>
+      <!-- time that measurement gets held back before it's published in [simulation cycles (int)] -->
+      <unknownDelay>0.0</unknownDelay>
+      <!-- additional delay, that just gets added to the timestamp [s] -->
+      <noiseNormalPosition>0 0 0</noiseNormalPosition>
+      <!-- standard deviation of additive white gaussian noise [m] -->
+      <noiseNormalQuaternion>0 0 0</noiseNormalQuaternion>
+      <!-- standard deviation white gaussian noise [rad]: q_m = q*quaternionFromSmallAngleApproximation(noiseNormalQ) -->
+      <noiseNormalLinearVelocity>0 0 0</noiseNormalLinearVelocity>
+      <!-- standard deviation of additive white gaussian noise [m/s] -->
+      <noiseNormalAngularVelocity>0 0 0</noiseNormalAngularVelocity>
+      <!-- standard deviation of additive white gaussian noise [rad/s] -->
+      <noiseUniformPosition>0 0 0</noiseUniformPosition>
+      <!-- symmetric bounds of uniform noise [m] -->
+      <noiseUniformQuaternion>0 0 0</noiseUniformQuaternion>
+      <!-- symmetric bounds of uniform noise [rad], computation see above -->
+      <noiseUniformLinearVelocity>0 0 0</noiseUniformLinearVelocity>
+      <!-- symmetric bounds of uniform noise [m/s] -->
+      <noiseUniformAngularVelocity>0 0 0</noiseUniformAngularVelocity>
+      <!-- symmetric bounds of uniform noise [rad/s] -->
+    </plugin>
+  </gazebo>
   <!-- forward facing camera -->
   <!--
      The asus_camera_model macro only adds the model, it does not also add
@@ -670,6 +766,22 @@
         <frameName>downward_cam_optical_frame</frameName>
       </plugin>
     </sensor>
+  </gazebo>
+  <!-- GPS -->
+  <gazebo>
+    <plugin filename="libhector_gazebo_ros_gps.so" name="gps_controller">
+      <updateRate>40</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <bodyName>base_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>navsat/fix</topicName>
+      <velocityTopicName>navsat/vel</velocityTopicName>
+      <referenceLatitude>49.9</referenceLatitude>
+      <referenceLongitude>8.9</referenceLongitude>
+      <referenceHeading>0</referenceHeading>
+      <referenceAltitude>0</referenceAltitude>
+      <drift>0.0001 0.0001 0.0001</drift>
+    </plugin>
   </gazebo>
 </robot>
 

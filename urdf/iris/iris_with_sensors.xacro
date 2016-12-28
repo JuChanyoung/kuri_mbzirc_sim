@@ -10,7 +10,7 @@
   <xacro:arg name='visual_material' default='DarkGrey' />
   <xacro:arg name='enable_mavlink_interface' default='true' />
   <xacro:arg name='enable_wind' default='false' />
-  <xacro:arg name='enable_ground_truth' default='false' />
+  <xacro:arg name='enable_ground_truth' default='true' />
   <xacro:arg name='enable_logging' default='false' />
   <xacro:arg name='log_file' default='iris' />
 
@@ -138,6 +138,25 @@
   <xacro:generic_camera name="downward_cam" parent="base_link" ros_topic="camera/image" cam_info_topic="camera/camera_info" update_rate="20" res_x="640" res_y="480" image_format="R8G8B8" hfov="100">
     <origin xyz="0.0 0.0 -0.045" rpy="0 ${M_PI/2} 0"/>
   </xacro:generic_camera>
+
+  <!-- GPS -->
+  <gazebo>
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <updateRate>40</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <bodyName>base_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>navsat/fix</topicName>
+      <velocityTopicName>navsat/vel</velocityTopicName>
+      <referenceLatitude>49.9</referenceLatitude>
+      <referenceLongitude>8.9</referenceLongitude>
+      <referenceHeading>0</referenceHeading>
+      <referenceAltitude>0</referenceAltitude>
+      <drift>0.0001 0.0001 0.0001</drift>
+    </plugin>
+  </gazebo>
+
+
 
 </robot>
 
