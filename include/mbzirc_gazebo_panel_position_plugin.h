@@ -56,7 +56,7 @@ public:
   virtual ~GazeboPanelPosition();
 
   // http://www.mbzirc.com/assets/files/MBZIRC-Challenge-Description-Document-V2-7SEP2015.pdf
-  const double MIN_RANGE = 20;
+  const double MIN_RANGE = 40;
   const double MAX_RANGE = 40;
 
   const double PANEL_Z = 0.975;
