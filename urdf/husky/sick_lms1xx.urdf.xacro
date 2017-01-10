@@ -57,15 +57,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <turnGravityOff>true</turnGravityOff>
       <sensor type="ray" name="${frame}">
         <pose>0 0 0 0 0 0</pose>
-        <visualize>false</visualize>
+        <visualize>true</visualize>
         <update_rate>50</update_rate>
         <ray>
           <scan>
             <horizontal>
-              <samples>720</samples>
+              <samples>467</samples>
               <resolution>1</resolution>
-              <min_angle>-2.35619</min_angle>
-              <max_angle>2.35619</max_angle>
+              <min_angle>-1.5709</min_angle>
+              <max_angle>1.5709</max_angle>
             </horizontal>
           </scan>
           <range>
@@ -76,7 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           <noise>
             <type>gaussian</type>
             <mean>0.0</mean>
-            <stddev>0.001</stddev>
+            <stddev>0.005</stddev>
           </noise>
         </ray>
         <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
