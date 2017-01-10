@@ -4,12 +4,7 @@ project(kuri_mbzirc_sim)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  gazebo_ros
-  std_msgs
-  geometry_msgs
-  #hector_gazebo_plugins
-  )
+find_package(catkin REQUIRED COMPONENTS gazebo_ros std_msgs geometry_msgs mavros_msgs)
 
 find_package(gazebo REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread random)
@@ -52,6 +47,10 @@ install(DIRECTORY launch gazebo_model
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
   USE_SOURCE_PERMISSIONS)
 
+#ros node for testing
+add_executable(takeoff src/takeoff.cpp)
+add_dependencies(takeoff ${PROJECT_NAME}_gencfg ${PROJECT_NAME}_generate_messages_cpp)
+target_link_libraries(takeoff ${catkin_LIBRARIES} )
 
 #############
 ## Testing ##
