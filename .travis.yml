@@ -30,9 +30,9 @@ before_install:
   - export REPOSITORY_NAME=${PWD##*/}
   - echo "Testing branch $TRAVIS_BRANCH of $REPOSITORY_NAME on $ROS_DISTRO"
   - sudo apt-get install -y software-properties-common
-  - sudo add-apt-repository ppa:george-edison55/cmake-3.x
+  - sudo add-apt-repository -y ppa:george-edison55/cmake-3.x
   - sudo apt-get update -qq
-  - sudo apt-get upgrade 
+  - sudo apt-get upgrade -y
   - sudo -E sh -c 'echo "deb $ROS_REPOSITORY_PATH `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list'
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
   - sudo apt-get update -qq
