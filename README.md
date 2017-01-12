@@ -1,4 +1,4 @@
-# kuri_mbzirc_sim
+# KURI Simulation Environment for MBZIRC
 Simulation Environemnt for MBZIRC
 
 Important: This package works with gazebo6+. If you have gazebo2 (default with indigo), you must upgrade your version of gazebo.
