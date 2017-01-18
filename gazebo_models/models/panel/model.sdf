@@ -89,5 +89,10 @@
         </geometry>
       </visual>
     </link>
+
+    <plugin name="mbzirc_gazebo_panel_position_plugin" filename="libmbzirc_gazebo_panel_position_plugin.so">
+      <randomize_wrenches>1</randomize_wrenches>
+      <randomize_location>1</randomize_location>
+    </plugin>
   </model>
 </sdf>
