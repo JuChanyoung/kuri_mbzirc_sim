@@ -49,7 +49,6 @@ install(DIRECTORY launch gazebo_model
 
 #ros node for testing
 add_executable(takeoff src/takeoff.cpp)
-add_dependencies(takeoff ${PROJECT_NAME}_gencfg ${PROJECT_NAME}_generate_messages_cpp)
 target_link_libraries(takeoff ${catkin_LIBRARIES} )
 
 #############
