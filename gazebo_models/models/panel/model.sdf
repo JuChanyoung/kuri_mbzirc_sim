@@ -78,7 +78,7 @@
     <allow_auto_disable>1</allow_auto_disable>
 
     <!-- Marker -->
-    <static>true</static>
+    <!--static>true</static>
     <link name="link">
       <pose>0.155 0.2 0.6  0 0 0</pose>
       <visual name="visual">
@@ -89,10 +89,11 @@
         </geometry>
       </visual>
     </link>
+-->
 
     <plugin name="mbzirc_gazebo_panel_position_plugin" filename="libmbzirc_gazebo_panel_position_plugin.so">
-      <randomize_wrenches>1</randomize_wrenches>
-      <randomize_location>1</randomize_location>
+      <randomize_wrenches>0</randomize_wrenches>
+      <randomize_location>0</randomize_location>
     </plugin>
   </model>
 </sdf>
