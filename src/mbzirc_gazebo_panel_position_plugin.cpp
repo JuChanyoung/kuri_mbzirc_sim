@@ -156,6 +156,7 @@ void GazeboPanelPosition::Update()
 
   if (is_random_wrenches_)
   {
+    std::srand(time(0)); //Seed the RNG
     std::random_shuffle ( vec.begin(), vec.end() );
   }
 
