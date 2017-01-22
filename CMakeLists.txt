@@ -51,6 +51,9 @@ install(DIRECTORY launch gazebo_model
 add_executable(takeoff src/takeoff.cpp)
 target_link_libraries(takeoff ${catkin_LIBRARIES} )
 
+add_executable(takeoff_ch3 src/takeoff_ch3_drones.cpp)
+target_link_libraries(takeoff_ch3 ${catkin_LIBRARIES} )
+
 #############
 ## Testing ##
 #############
