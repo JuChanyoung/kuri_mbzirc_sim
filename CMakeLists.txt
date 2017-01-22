@@ -54,6 +54,8 @@ target_link_libraries(takeoff ${catkin_LIBRARIES} )
 add_executable(takeoff_ch3 src/takeoff_ch3_drones.cpp)
 target_link_libraries(takeoff_ch3 ${catkin_LIBRARIES} )
 
+add_executable(offb_node_position_waypoints src/offb_node_position_waypoints.cpp)
+target_link_libraries(offb_node_position_waypoints ${catkin_LIBRARIES} )
 #############
 ## Testing ##
 #############
