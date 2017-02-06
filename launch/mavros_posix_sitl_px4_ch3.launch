@@ -11,6 +11,7 @@
     <arg name="paused" default="false"/> 
     <arg name="pluginlists_yaml" default="$(find mavros)/launch/px4_pluginlists.yaml" />
     <arg name="config_yaml" default="$(find mavros)/launch/px4_config.yaml" />
+    <arg name="screen" default="screen"/>
 
     
   <include file="$(find kuri_mbzirc_sim)/launch/mbzirc_arena.launch" >
@@ -37,10 +38,10 @@
     <arg name="P" default="0"/>
     <arg name="Y" default="0"/>
     
-    <node name="$(anon vehicle_spawn)" output="screen" pkg="gazebo_ros" type="spawn_model"
+    <node name="$(anon vehicle_spawn)" output="$(arg screen)" pkg="gazebo_ros" type="spawn_model"
         args="-sdf -file $(arg sdf) -model $(arg name) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
 	
-    <node name="sitl" pkg="px4" type="px4" output="screen"
+    <node name="sitl" pkg="px4" type="px4" output="$(arg screen)"
         args="$(find px4) $(arg rcS)">
     </node>
 
@@ -69,10 +70,10 @@
     <arg name="R" default="0"/>
     <arg name="P" default="0"/>
     <arg name="Y" default="0"/>
-    <node name="$(anon vehicle_spawn)" output="screen" pkg="gazebo_ros" type="spawn_model"
+    <node name="$(anon vehicle_spawn)" output="$(arg screen)" pkg="gazebo_ros" type="spawn_model"
         args="-sdf -file $(arg sdf) -model $(arg name) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
     
-    <node name="sitl" pkg="px4" type="px4" output="screen"
+    <node name="sitl" pkg="px4" type="px4" output="$(arg screen)"
         args="$(find px4) $(arg rcS)">
     </node>
 
@@ -101,10 +102,10 @@
     <arg name="R" default="0"/>
     <arg name="P" default="0"/>
     <arg name="Y" default="0"/>
-    <node name="$(anon vehicle_spawn)" output="screen" pkg="gazebo_ros" type="spawn_model"
+    <node name="$(anon vehicle_spawn)" output="$(arg screen)" pkg="gazebo_ros" type="spawn_model"
         args="-sdf -file $(arg sdf) -model $(arg name) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
     
-    <node name="sitl" pkg="px4" type="px4" output="screen"
+    <node name="sitl" pkg="px4" type="px4" output="$(arg screen)"
         args="$(find px4) $(arg rcS)">
     </node>
 
