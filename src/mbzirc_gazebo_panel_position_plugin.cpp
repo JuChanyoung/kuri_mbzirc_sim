@@ -30,7 +30,10 @@
 #include <mbzirc_gazebo_panel_position_plugin.h>
 #include <string>
 #include <algorithm>    // std::random_shuffle
+
+#if GAZEBO_MAJOR_VERSION >= 6
 #include <ignition/math/Pose3.hh>
+#endif
 
 double randomDouble(double min, double max)
 {
