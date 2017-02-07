@@ -82,6 +82,21 @@ void GazeboPanelPosition::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   }
 
 
+  if (!_sdf->HasElement("randomize_wrenches")) {
+    ROS_INFO("Panel position plugin missing <randomize_wrenches>, defaults to false");
+    is_random_wrenches_ = -1;
+  } else {
+    is_random_wrenches_ = _sdf->GetElement("randomize_wrenches")->Get<int>();
+  }
+
+  if (!_sdf->HasElement("randomize_location")) {
+    ROS_INFO("Panel position plugin missing <randomize_location>, defaults to false");
+    is_random_location_ = -1;
+  } else {
+    is_random_location_ = _sdf->GetElement("randomize_location")->Get<int>();
+  }
+
+
   // Make sure the ROS node for Gazebo has already been initialized
   if (!ros::isInitialized())
   {
@@ -105,15 +120,30 @@ void GazeboPanelPosition::Update()
       return;
     }
 
-  double r = randomDouble(MIN_RANGE, MAX_RANGE);
-  double a = randomDouble(-M_PI, 0);
-  double yaw = randomDouble(0, 2*M_PI);
 
-  double x, y;
-  x = r*cos(a) + STARTING_ZONE_X;
-  y = r*sin(a) + STARTING_ZONE_Y;
+  double x, y, yaw;
+  if (is_random_location_)
+  {
+    // Set pose
+    double r,a;
+    r = randomDouble(MIN_RANGE, MAX_RANGE);
+    a = randomDouble(-M_PI, 0);
+    yaw = randomDouble(0, 2*M_PI);
 
-  model_->SetLinkWorldPose(math::Pose(x, y, PANEL_Z, 0, 0, yaw), link_);
+    x = r*cos(a) + STARTING_ZONE_X;
+    y = r*sin(a) + STARTING_ZONE_Y;
+
+    model_->SetLinkWorldPose(math::Pose(x, y, PANEL_Z, 0, 0, yaw), link_);
+  }
+  else
+  {
+    // Read current pose
+    math::Pose p;
+    p = model_->GetWorldPose();
+    x = p.pos.x;
+    y = p.pos.y;
+    yaw = p.rot.GetYaw();
+  }
 
   // === Insert wrenches ===
   // Create a new transport node
@@ -126,7 +156,12 @@ void GazeboPanelPosition::Update()
   // Randomize wrenches
   static const double arr[] = {0.20,0.25,0.30,0.35,0.40,0.45};
   std::vector<double> vec (arr, arr + sizeof(arr) / sizeof(arr[0]) );
-  std::random_shuffle ( vec.begin(), vec.end() );
+
+  if (is_random_wrenches_)
+  {
+    std::srand(time(0)); //Seed the RNG
+    std::random_shuffle ( vec.begin(), vec.end() );
+  }
 
   // Insert wrenches
   InsertValveStem("model://stem", x, y, 0.0225, -0.155, yaw);

@@ -709,6 +709,8 @@
     </sensor>
   </gazebo>
   <!-- Downward facing camera -->
+  <!-- <xacro:generic_camera name="downward_cam" parent="base_link" ros_topic="camera/image" cam_info_topic="camera/camera_info" update_rate="20" res_x="640" res_y="480" image_format="R8G8B8" hfov="100">
+    <origin xyz="0.0 0.0 -0.045" rpy="0 ${M_PI/2} 0"/> -->
   <joint name="downward_cam_joint" type="fixed">
     <origin rpy="0 1.57079632679 0" xyz="0.0 0.0 -0.045"/>
     <parent link="base_link"/>
@@ -744,13 +746,13 @@
   <link name="downward_cam_optical_frame"/>
   <gazebo reference="downward_cam_link">
     <sensor name="downward_cam_camera_sensor" type="camera">
-      <update_rate>20</update_rate>
+      <update_rate>77</update_rate>
       <camera>
-        <horizontal_fov>1.74532925199</horizontal_fov>
+        <horizontal_fov>0.924771430815</horizontal_fov>
         <image>
           <format>R8G8B8</format>
-          <width>640</width>
-          <height>480</height>
+          <width>1228</width>
+          <height>1027</height>
         </image>
         <clip>
           <near>0.01</near>
@@ -760,13 +762,14 @@
       <plugin filename="libgazebo_ros_camera.so" name="downward_cam_camera_controller">
         <cameraName>downward_cam</cameraName>
         <alwaysOn>true</alwaysOn>
-        <updateRate>20</updateRate>
+        <updateRate>77</updateRate>
         <imageTopicName>camera/image</imageTopicName>
         <cameraInfoTopicName>camera/camera_info</cameraInfoTopicName>
         <frameName>downward_cam_optical_frame</frameName>
       </plugin>
     </sensor>
   </gazebo>
+  <!-- stick -->
   <!-- GPS -->
   <gazebo>
     <plugin filename="libhector_gazebo_ros_gps.so" name="gps_controller">

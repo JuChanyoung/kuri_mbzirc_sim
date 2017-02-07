@@ -81,6 +81,9 @@ private:
   physics::JointPtr joint_;
   physics::ModelPtr model_;
 
+  bool is_random_wrenches_;
+  bool is_random_location_;
+
   std::string link_name_;
   std::string namespace_;
 

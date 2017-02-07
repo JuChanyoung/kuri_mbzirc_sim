@@ -17,6 +17,8 @@
   <!-- macros for gazebo plugins, sensors -->
   <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/iris_accessories/component_snippets.xacro" />
 
+
+
   <!-- Instantiate iris "mechanics" -->
   <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/iris_accessories/iris.xacro" />
 
@@ -135,9 +137,17 @@
 
   <!-- Downward facing camera -->
    <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/iris_accessories/generic_camera.urdf.xacro" />
-  <xacro:generic_camera name="downward_cam" parent="base_link" ros_topic="camera/image" cam_info_topic="camera/camera_info" update_rate="20" res_x="640" res_y="480" image_format="R8G8B8" hfov="100">
-    <origin xyz="0.0 0.0 -0.045" rpy="0 ${M_PI/2} 0"/>
+ <!-- <xacro:generic_camera name="downward_cam" parent="base_link" ros_topic="camera/image" cam_info_topic="camera/camera_info" update_rate="20" res_x="640" res_y="480" image_format="R8G8B8" hfov="100">
+    <origin xyz="0.0 0.0 -0.045" rpy="0 ${M_PI/2} 0"/> -->
+    <xacro:generic_camera name="downward_cam" parent="base_link" ros_topic="camera/image" cam_info_topic="camera/camera_info" update_rate="77" res_x="1228" res_y="1027" image_format="R8G8B8" hfov="52.9855">
+    <origin xyz="0.0 0.0 -0.045" rpy="0 ${M_PI/2} 0"/> 
   </xacro:generic_camera>
+
+
+
+  <!-- stick -->
+
+
 
   <!-- GPS -->
   <gazebo>

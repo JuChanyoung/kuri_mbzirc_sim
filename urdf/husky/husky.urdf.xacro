@@ -32,7 +32,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>
   <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/husky/sick_lms1xx.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
-  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <!--<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>-->
+  <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/husky/VLP-16.urdf.xacro"/>
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/accessories/gripper.urdf.xacro"/>
 
@@ -166,7 +167,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
       </xacro:sensor_arch>
       <joint name="kinect_frame_joint" type="fixed">
-        <origin xyz="$(optenv HUSKY_KINECT_XYZ 0 0 0)" rpy="$(optenv HUSKY_KINECT_RPY 0 0.18 3.14)" />
+        <origin xyz="$(optenv HUSKY_KINECT_XYZ 0 0 0)" rpy="$(optenv HUSKY_KINECT_RPY 0 0 3.14)" />
         <parent link="sensor_arch_mount_link"/>
         <child link="camera_link"/>
       </joint>
