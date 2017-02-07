@@ -30,12 +30,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
 
   <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>
-  <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/husky/sick_lms1xx.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
-  <!--<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>-->
-  <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/husky/VLP-16.urdf.xacro"/>
-  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/accessories/gripper.urdf.xacro"/>
+
+  <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/husky/accessories/sick_lms1xx.urdf.xacro" />
+  <xacro:include filename="$(find kuri_mbzirc_sim)/urdf/husky/accessories/VLP-16.urdf.xacro"/>
+
+<!--<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>-->
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+
 
   <property name="M_PI" value="3.14159"/>
 

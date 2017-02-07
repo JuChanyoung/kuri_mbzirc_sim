@@ -26,15 +26,7 @@
       <arg name="headless" default="$(arg headless)"/>
     </include>
 
-    <node name="spawn_panel" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/panel/model.sdf -unpause -sdf -model panel -x 5 -y 5 -z 0" />
-
-    <node name="link_stem" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/stem/model.sdf -sdf -model link_stem -x 5.0225 -y 4.845 -z 0.98 -P -1.57079632679" />
-    <node name="spawn_wrench12" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/wrench12/model.sdf -sdf -model wrench12 -x 5.165 -y 5.20 -z 1.20" />
-    <node name="spawn_wrench13" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/wrench13/model.sdf -sdf -model wrench13 -x 5.165 -y 5.25 -z 1.20" />
-    <node name="spawn_wrench14" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/wrench14/model.sdf -sdf -model wrench14 -x 5.165 -y 5.30 -z 1.20" />
-    <node name="spawn_wrench15" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/wrench15/model.sdf -sdf -model wrench15 -x 5.165 -y 5.35 -z 1.20" />
-    <node name="spawn_wrench18" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/wrench18/model.sdf -sdf -model wrench18 -x 5.165 -y 5.40 -z 1.20" />
-    <node name="spawn_wrench19" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/wrench19/model.sdf -sdf -model wrench19 -x 5.165 -y 5.45 -z 1.20" />
+    <node name="spawn_panel" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/panel/model.sdf -unpause -sdf -model panel -x 0 -y 0 -z 0" />
   </group>
 
 </launch>
