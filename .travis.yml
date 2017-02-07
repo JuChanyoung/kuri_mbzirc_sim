@@ -55,7 +55,9 @@ install:
   - cd ~/ros/kuri_catkin_ws/src
   # Installing and Compiling the Firmeware:
   - git clone https://github.com/PX4/Firmware.git
+  - git clone https://github.com/kuri-kustar/kuri_mbzirc_sim.git
   - cd ~/ros/kuri_catkin_ws/
+  - rosdep install -y -r --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 # Use this to prepare your build for testing e.g. copy database configurations, environment variables, etc.
 before_script: 
 - source /opt/ros/$ROS_DISTRO/setup.bash
