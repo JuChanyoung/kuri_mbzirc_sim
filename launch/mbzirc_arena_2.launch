@@ -1,5 +1,6 @@
 <launch>
-  <arg name="random_panel" default="true"/>
+  <arg name="random_panel_wrenches" default="true"/>
+  <arg name="random_panel_location" default="true"/>
 
   <arg name="paused" default="false"/>
   <arg name="debug" default="false"/>
@@ -7,26 +8,34 @@
   <arg name="headless" default="false"/>
 
 
-    <include if="$(arg random_panel)" file="$(find kuri_mbzirc_sim)/launch/mbzirc_arena.launch" >
-      <arg name="world_name" default="$(find kuri_mbzirc_sim)/gazebo_models/world/mbzirc_arena_task_2_random.world"/>
+  <!-- Random location-->
+  <include if="$(arg random_panel_location)" file="$(find kuri_mbzirc_sim)/launch/mbzirc_arena.launch" >
+    <arg name="world_name" default="$(find kuri_mbzirc_sim)/gazebo_models/world/mbzirc_arena_task_2_random_location.world"/>
+    <arg name="paused" default="$(arg paused)"/>
+    <arg name="debug" default="$(arg debug)"/>
+    <arg name="gui" default="$(arg gui)"  />
+    <arg name="headless" default="$(arg headless)"/>
+  </include>
+
+
+  <group unless="$(arg random_panel_location)">
+    <!-- Random location-->
+    <include if="$(arg random_panel_wrenches)" file="$(find kuri_mbzirc_sim)/launch/mbzirc_arena.launch" >
+      <arg name="world_name" default="$(find kuri_mbzirc_sim)/gazebo_models/world/mbzirc_arena_task_2_random_wrenches.world"/>
       <arg name="paused" default="$(arg paused)"/>
       <arg name="debug" default="$(arg debug)"/>
       <arg name="gui" default="$(arg gui)"  />
       <arg name="headless" default="$(arg headless)"/>
     </include>
 
-
-  <group unless="$(arg random_panel)">
-    <!-- start paused to ensure all the models have spawned -->
-    <include file="$(find kuri_mbzirc_sim)/launch/mbzirc_arena.launch" >
+    <!-- No randomization -->
+    <include unless="$(arg random_panel_wrenches)" file="$(find kuri_mbzirc_sim)/launch/mbzirc_arena.launch" >
       <arg name="world_name" default="$(find kuri_mbzirc_sim)/gazebo_models/world/mbzirc_arena_task_2.world"/>
-      <arg name="paused" default="true"/>
+      <arg name="paused" default="$(arg paused)"/>
       <arg name="debug" default="$(arg debug)"/>
       <arg name="gui" default="$(arg gui)"  />
       <arg name="headless" default="$(arg headless)"/>
     </include>
-
-    <node name="spawn_panel" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args=" -file $(find kuri_mbzirc_sim)/gazebo_models/models/panel/model.sdf -unpause -sdf -model panel -x 0 -y 0 -z 0" />
   </group>
 
 </launch>

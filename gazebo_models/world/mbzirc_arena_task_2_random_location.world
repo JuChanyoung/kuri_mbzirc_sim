@@ -55,8 +55,9 @@
     <!-- The plugin creates the wrenches at the appropriate location after randomization -->
     <include>
       <pose>0 0 0  0 0 0</pose>
-      <uri>model://panel</uri>
+      <uri>model://panel_random_location</uri>
     </include>
+
 
     <gui fullscreen='0'>
       <camera name='user_camera'>
