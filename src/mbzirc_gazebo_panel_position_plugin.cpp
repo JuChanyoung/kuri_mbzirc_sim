@@ -120,6 +120,7 @@ void GazeboPanelPosition::Update()
       return;
     }
 
+  std::srand(time(0)); //Seed the RNG
 
   double x, y, yaw;
   if (is_random_location_)
@@ -159,7 +160,6 @@ void GazeboPanelPosition::Update()
 
   if (is_random_wrenches_)
   {
-    std::srand(time(0)); //Seed the RNG
     std::random_shuffle ( vec.begin(), vec.end() );
   }
 
