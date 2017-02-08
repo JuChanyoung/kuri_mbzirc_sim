@@ -30,6 +30,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="kinect_enabled" default="false"/>
   <arg name="velodyne_enabled" default="false"/>
   <arg name="gripper_enabled" default="false"/>
+  <arg name="softkinetic_enabled" default="false"/>
 
   <arg name="ur5_control_yaml_file" default="$(find husky_control)/config/control_ur5.yaml"/>
   <arg name="robot_initial_pose" default="$(optenv ROBOT_INITIAL_POSE)"/>
@@ -41,6 +42,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     kinect_enabled:=$(arg kinect_enabled)
     velodyne_enabled:=$(arg velodyne_enabled)
     gripper_enabled:=$(arg gripper_enabled)
+    softkinetic_enabled:=$(arg softkinetic_enabled)
     " />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
@@ -74,9 +76,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   </group>
 
+  <!--
   <group if="$(arg kinect_enabled)">
-
-    <!-- Include poincloud_to_laserscan if simulated Kinect is attached -->
     <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan" output="screen">
 
         <remap from="cloud_in" to="camera/depth/points"/>
@@ -102,8 +103,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             concurrency_level: 1
         </rosparam>
     </node>
-
   </group>
+  -->
 
   <!-- Spawn robot in gazebo -->
   <node name="spawn_husky_model" pkg="gazebo_ros" type="spawn_model"
