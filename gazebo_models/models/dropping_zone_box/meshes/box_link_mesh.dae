@@ -19,10 +19,10 @@
               <color sid="emission">0   0   0   1</color>
             </emission>
             <ambient>
-              <color sid="ambient">0.371094   0.371094   0.371094   1</color>
+              <color sid="ambient">1   1   1   1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.742188   0.742188   0.742188   1</color>
+              <color sid="diffuse">1   1   1   1</color>
             </diffuse>
             <specular>
               <color sid="specular">0   0   0   1</color>
