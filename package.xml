@@ -13,12 +13,12 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <build_depend>geometry_msgs</build_depend>
-  <build_depend>gazebo_ros</build_depend>
+  <build_depend>gazebo7_ros</build_depend>
   <build_depend>mavros_msgs</build_depend>
 
   <run_depend>geometry_msgs</run_depend>
-  <run_depend>gazebo_plugins</run_depend>
-  <run_depend>gazebo_ros</run_depend>
+  <run_depend>gazebo7_plugins</run_depend>
+  <run_depend>gazebo7_ros</run_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
